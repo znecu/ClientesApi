@@ -40,7 +40,7 @@ public class ClientesServices(IDbContextFactory<Contexto> DbFactory) : IClientes
         _contexto.Cliente.Add(cliente);
         var guardo = await _contexto
             .SaveChangesAsync() > 0;
-        clienteDto.ClientesId = cliente.ClienteId;
+        clienteDto.ClienteId = cliente.ClienteId;
         return guardo;
     }
 
@@ -49,7 +49,7 @@ public class ClientesServices(IDbContextFactory<Contexto> DbFactory) : IClientes
         await using var _contexto = await DbFactory.CreateDbContextAsync();
         var cliente = new Cliente()
         {
-            ClienteId = clienteDto.ClientesId,
+            ClienteId = clienteDto.ClienteId,
             Nombres = clienteDto.Nombres,
             Whatsapp= clienteDto.Whatsapp
         };
@@ -61,7 +61,7 @@ public class ClientesServices(IDbContextFactory<Contexto> DbFactory) : IClientes
 
     public async Task<bool> Guardar(ClientesDto cliente)
     {
-        if (!await Existe(cliente.ClientesId))
+        if (!await Existe(cliente.ClienteId))
             return await Insertar(cliente);
         else
             return await Modificar(cliente);
@@ -83,7 +83,7 @@ public class ClientesServices(IDbContextFactory<Contexto> DbFactory) : IClientes
             .Where(c => c.ClienteId == id)
             .Select(c => new ClientesDto()
             {
-                ClientesId = c.ClienteId,
+                ClienteId = c.ClienteId,
                 Nombres = c.Nombres,
                 Whatsapp = c.Whatsapp
             }).FirstOrDefaultAsync();
@@ -96,7 +96,7 @@ public class ClientesServices(IDbContextFactory<Contexto> DbFactory) : IClientes
         return await _contexto.Cliente
             .Select(c => new ClientesDto()
             {
-                ClientesId = c.ClienteId,
+                ClienteId = c.ClienteId,
                 Nombres = c.Nombres,
                 Whatsapp = c.Whatsapp
             })
