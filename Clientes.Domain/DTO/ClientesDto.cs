@@ -8,7 +8,7 @@ namespace Clientes.Domain.DTO;
 
 public class ClientesDto
 {
-    public int ClientesId { get; set; }
+    public int ClienteId { get; set; }
 
     public string? Nombres { get; set; }
 
