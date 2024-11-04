@@ -11,17 +11,25 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.RegisterServices();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAnyOrigin",
+        builder => builder.AllowAnyOrigin() // Allow any origin
+                          .AllowAnyMethod()
+                          .AllowAnyHeader());
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
 //if (app.Environment.IsDevelopment())
 //{
-    app.UseSwagger();
-    app.UseSwaggerUI();
+app.UseSwagger();
+app.UseSwaggerUI();
 //}
 
 app.UseHttpsRedirection();
-
+app.UseCors("AllowAnyOrigin"); // Use the CORS policy
 app.UseAuthorization();
 
 app.MapControllers();
