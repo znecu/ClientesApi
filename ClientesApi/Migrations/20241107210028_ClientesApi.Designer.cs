@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ClientesApi.Migrations
 {
     [DbContext(typeof(Contexto))]
-    [Migration("20241106182218_ClientesDb")]
-    partial class ClientesDb
+    [Migration("20241107210028_ClientesApi")]
+    partial class ClientesApi
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
